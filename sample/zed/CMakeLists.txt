@@ -9,18 +9,22 @@ find_package(CUDA ${ZED_CUDA_VERSION} REQUIRED)
 
 find_package(OpenCV REQUIRED core) # dummy
 if(OpenCV_VERSION VERSION_LESS 3.0) 
-	find_package(OpenCV REQUIRED core highgui imgproc)  # 2.x
+	find_package(OpenCV REQUIRED core highgui imgproc calib3d stereo)  # 2.x
 else()
-	find_package(OpenCV REQUIRED core highgui imgproc imgcodecs videoio) # 3.x
+	find_package(OpenCV REQUIRED core highgui imgproc imgcodecs videoio calib3d stereo) # 3.x
 endif()
 
+find_package(PCL REQUIRED)
 include_directories(../../include)
 include_directories(${CUDA_INCLUDE_DIRS})
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(${ZED_INCLUDE_DIRS})
+include_directories(${PCL_INCLUDE_DIRS})
 
 link_directories(${ZED_LIBRARY_DIR})
 link_directories(${CUDA_LIBRARY_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+link_directories(${OpenCV_LIBRARY_DIRS})
 
 if(NOT WIN32)
 	set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS} -std=c++11")
@@ -37,4 +41,5 @@ TARGET_LINK_LIBRARIES(zed_demo
 	${CUDA_LIBRARIES} ${CUDA_NPP_LIBRARIES_ZED}
 	${OpenCV_LIBS} 
 	${ZED_LIBRARIES}
+    ${PCL_LIBRARIES}
 )

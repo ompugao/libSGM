@@ -5,10 +5,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CUDA_ARCH "-arch=sm_50" CACHE STRING "Value of the NVCC -arch option.")
 
-option(ENABLE_ZED_DEMO "Build a Demo using ZED Camera" OFF)
-option(ENABLE_SAMPLES  "Build samples" OFF)
+option(ENABLE_ZED_DEMO "Build a Demo using ZED Camera" ON)
+option(ENABLE_SAMPLES  "Build samples" ON)
 option(ENABLE_TESTS    "Test library" OFF)
-option(LIBSGM_SHARED   "Build a shared library" OFF)
+option(LIBSGM_SHARED   "Build a shared library" ON)
 
 if(WIN32)
   set(ZED_SDK_LIB "C:\\Program Files (x86)\\ZED SDK\\lib\\sl_zed64.lib" CACHE STRING "ZED SDK library(sl_zed**.llb) path.")
